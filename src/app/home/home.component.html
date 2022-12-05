@@ -6,15 +6,68 @@
                     <h4>Products</h4>
                 </div>
                 <div class="catList">
-                    <div>
-                        <input type="checkbox" id="catName" name="Smartphones">
-                        <label for="Smartphones">Laptops</label>
+                    <div *ngFor="let cat of allCategories">
+                        <input type="checkbox" id="catName" name={{cat}} value={{cat}} (change)="showCategory($event)">
+                        <label for={{cat}}>{{cat}}</label>
                     </div>
                 </div>
             </div>
         </div>
         <div class="productsSection">
-            products
+            <div class="displayProducts">
+                <div class="card" *ngFor="let prod of allProducts">
+                    <img class="card-img-top" [src]="prod.thumbnail" alt="Card image">
+                    <div class="card-body">
+                        <h4 class="card-text title">{{prod.title}}</h4>
+                        <p class="card-text desc">{{prod.description}}</p>
+                        <p class="card-price price">{{prod.price}} USD</p>
+                        <p class="card-percent percent">{{prod.discountPercentage | percent}}</p>
+                        <p class="card-rate rate">{{prod.rating}}</p>
+                        <p class="card-stock inStock">in Stock:{{prod.stock}}</p>
+                        <p class="card-brand brand">Brand: {{prod.brand}}</p>
+                        <p class="card-category category">Category: {{prod.category}}</p>
+                        <button>ADD TO CART</button>
+                    </div>
+                </div>
+                <!-- <div class="card">
+                    <img class="card-img-top" src="assets/images/logo.png" alt="Card image" width="300px">
+                    <div class="card-body">
+                        <p class="card-text name">products</p>
+                        <p class="card-text desc">products</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="assets/images/logo.png" alt="Card image" width="300px">
+                    <div class="card-body">
+                        <p class="card-text name">products</p>
+                        <p class="card-text desc">products</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="assets/images/logo.png" alt="Card image" width="300px">
+                    <div class="card-body">
+                        <p class="card-text name">products</p>
+                        <p class="card-text desc">products</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="assets/images/logo.png" alt="Card image" width="300px">
+                    <div class="card-body">
+                        <p class="card-text name">products</p>
+                        <p class="card-text desc">products</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="assets/images/logo.png" alt="Card image" width="300px">
+                    <div class="card-body">
+                        <p class="card-text name">products</p>
+                        <p class="card-text desc">products</p>
+                    </div>
+                </div>
+            </div> -->
+            <!-- <div class="showProducts" *ngFor="let prod of allProducts">
+                {{prod.title}}
+            </div> -->
         </div>
     </div>
 </div>

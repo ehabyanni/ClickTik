@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   onSubmit(){
     let userlogin = this.USERNAME?.value;
     let passlogin = this.PASSWORD?.value;
@@ -47,14 +46,12 @@ export class LoginComponent implements OnInit {
     if ((userlogin != null) && (passlogin != null)) {
       this.auth.login(userlogin, passlogin).subscribe(
         data => {
-          //console.log(data.token);
           localStorage.setItem('authToken', data.token);
           this.isLoggedIn = true;
           this.isLoginFailed = false;
           this.router.navigate(['home']);
         }
       );
-      //console.log(userlogin + "    " + passlogin)
     }
     else{
       console.log("login failed");

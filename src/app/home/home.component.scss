@@ -1,58 +1,102 @@
-*{
-    padding: 0%;
-    margin: 0%;
-    font-family: sans-serif;
-}
 
+.container1 {
+    background-color: rgb(255, 255, 255);
 
-//shared class
-%flexbox{
-    display: flex; 
-    flex-direction: row; 
-}
-
-.container1{
-    background-color: red;
-    .container2{
+    .container2 {
         background-color: rgb(255, 255, 255);
-        width: 85%;  
-        margin: auto; 
-        @extend %flexbox;
-        padding-top: 50px; 
+        width: 85%;
+        margin: auto;
+        display: flex;
+        flex-direction: row;
+        padding-top: 50px;
         padding-bottom: 50px;
-        .categoriesSection{
-            background-color: white; 
-            width: 25%;
+
+        .categoriesSection {
+            background-color: white;
+            width: 20%;
+            height: fit-content;
             border: 1px solid rgb(227, 227, 227);
             border-radius: 7px;
-           .catSection{
-            width: 95%;
-            margin: auto;
-            .title{
-                width: 100%;
-                height: max-content;
-                border-bottom: 1px solid rgb(227, 227, 227);
-                h4{
-                    font-size: 14px;
-                    font-weight: bold;
-                    padding-top: 5px;
-                    padding-bottom: 5px;
+
+            .catSection {
+                width: 95%;
+                margin: auto;
+
+                .title {
+                    width: 100%;
+                    height: max-content;
+                    border-bottom: 1px solid rgb(227, 227, 227);
+
+                    h4 {
+                        font-size: 14px;
+                        font-weight: bold;
+                        padding-top: 5px;
+                        padding-bottom: 5px;
+                    }
+                }
+
+                .catList {
+                    width: 100%;
+                    height: max-content;
+                    display: flex;
+                    flex-direction: column;
+                    flex-wrap: wrap;
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+
+                    label {
+                        font-size: 14px;
+                        margin-left: 5px;
+                    }
                 }
             }
-            .catList{
-                width: 100%;
-                height: max-content;
-                padding-top: 5px;
-                label{
-                    font-size: 14px;
-                    margin-left: 3px;
-                }
-            }
-           }
         }
-        .productsSection{
-            background-color: rgb(255, 205, 205); 
-            width: 75%;
+
+        .productsSection {
+            background-color: rgb(252, 212, 212);
+            width: 80%;
+            .displayProducts {
+                background-color: rgb(255, 255, 255);
+                width: 98%;
+                margin: auto;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                .card{
+                    width: 32% !important;
+                    background-color: rgb(255, 255, 255);
+                    margin: auto;
+                    margin-bottom: 15px;
+                    margin-top: 0% !important;
+                    padding: 0%;
+                    border: 1px solid rgb(227, 227, 227);
+                    border-radius: 7px;
+                    overflow: hidden;
+                    img{
+                        display: block;
+                        margin-left: auto;
+                        margin-right: auto;
+                        height: 200px;
+                    }
+                    .card-body{
+                        background-color: rgb(255, 255, 255);
+                        padding: 10px;
+                        display: flex;
+                        flex-direction: column;
+                        flex-wrap: wrap;
+                        .title{
+                            color: black;
+                        }
+                        .desc{
+                            font-size: 14px;
+                            margin-top: 5px;
+                            margin-bottom: 5px;
+                        }
+                        
+                    }
+
+                }
+            }
         }
     }
 }
