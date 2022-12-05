@@ -1,0 +1,58 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    font-family: sans-serif;
+}
+
+
+//shared class
+%flexbox{
+    display: flex; 
+    flex-direction: row; 
+}
+
+.container1{
+    background-color: red;
+    .container2{
+        background-color: rgb(255, 255, 255);
+        width: 85%;  
+        margin: auto; 
+        @extend %flexbox;
+        padding-top: 50px; 
+        padding-bottom: 50px;
+        .categoriesSection{
+            background-color: white; 
+            width: 25%;
+            border: 1px solid rgb(227, 227, 227);
+            border-radius: 7px;
+           .catSection{
+            width: 95%;
+            margin: auto;
+            .title{
+                width: 100%;
+                height: max-content;
+                border-bottom: 1px solid rgb(227, 227, 227);
+                h4{
+                    font-size: 14px;
+                    font-weight: bold;
+                    padding-top: 5px;
+                    padding-bottom: 5px;
+                }
+            }
+            .catList{
+                width: 100%;
+                height: max-content;
+                padding-top: 5px;
+                label{
+                    font-size: 14px;
+                    margin-left: 3px;
+                }
+            }
+           }
+        }
+        .productsSection{
+            background-color: rgb(255, 205, 205); 
+            width: 75%;
+        }
+    }
+}

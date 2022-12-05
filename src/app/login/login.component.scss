@@ -40,6 +40,8 @@ $greys: rgb(75, 75, 75);
         }
         .passwordLogin{
             @extend %flexbox;
+            padding-top: 20px; 
+            padding-bottom: 20px;
         }
         label{
          text-align: left;

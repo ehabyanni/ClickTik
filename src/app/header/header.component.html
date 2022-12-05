@@ -11,11 +11,13 @@
                     <a>Home</a>
                 </div>
                 <div class="searchbar">
-                    <input type="search" placeholder="Search...">
+                    <input type="search" placeholder="Search">
                 </div>
             </div>
             <div class="status">
                 <a routerLink="/login">Account</a>
+                &nbsp;
+                <a (click)="signOut()">Logout</a>
             </div>
         </ng-template>
         <ng-template #loginBlock>

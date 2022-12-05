@@ -11,22 +11,15 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  public login(email: string, password: string): Observable<any> {
-    return this.http.post<any>(AUTH_API + 'login', {
-      email: email,
+  public login(username: string, password: string): Observable<any> {
+    return this.http.post<any>(AUTH_API, {
+      username: username,
       password: password
     }, httpOptions);
-  }
-
-  public register(name: string, email: string, password: string): Observable<any> {
-    return this.http.post<any>(AUTH_API + 'register', {
-      name: name,
-      email: email,
-      password: password
-    })
   }
 }
