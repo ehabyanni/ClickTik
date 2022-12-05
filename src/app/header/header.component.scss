@@ -1,0 +1,87 @@
+* {
+    font-family: sans-serif;
+}
+
+//variables
+$blacks: #0000;
+$greys: rgb(75, 75, 75);
+
+//shared class
+%flexbox {
+    display: flex;
+    flex-direction: row;
+}
+
+%link {
+    text-decoration: none;
+    color: $greys;
+}
+
+
+.container1 {
+    height: 50px;
+    border-bottom: 1px solid #000;
+
+    .container2 {
+        background-color: rgb(255, 255, 255);
+        margin: auto;
+        width: 90%;
+        height: 100%;
+        @extend %flexbox;
+        align-items: center;
+
+        .company {
+            width: 20%;
+            @extend %flexbox;
+            align-items: center;
+            justify-content: center;
+
+            img {
+                width: 30px;
+                margin-right: 5px;
+            }
+
+            h4 {
+                font-weight: normal;
+            }
+        }
+
+        .navBar {
+            width: 60%;
+            color: $greys;
+            @extend %flexbox;
+            align-items: center;
+
+            .navigation {
+                width: 65%;
+
+                a {
+                    @extend %link;
+                }
+            }
+
+            .searchbar {
+                width: 35%;
+
+                input {
+                    width: 100%;
+                    height: 30px;
+                    padding: 5px;
+                    border: 1px solid rgb(161, 161, 161);
+                    border-radius: 10px;
+                    margin: auto;
+                    outline: none;
+                }
+            }
+        }
+
+        .status {
+            width: 20%;
+            text-align: center;
+
+            a {
+                @extend %link;
+            }
+        }
+    }
+}

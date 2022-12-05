@@ -1,0 +1,50 @@
+*{
+    font-family: sans-serif;
+}
+
+//variable
+$darkblue: #1D2939;
+$whiteColor: #ffff;
+
+//shared class
+%flexbox {
+    display: flex;
+    flex-direction: row;
+}
+
+.container1{
+    background-color: $darkblue;
+    height: 80px;
+    .container2{
+        margin: auto;
+        height: 100%;
+        width: 90%;
+        @extend %flexbox;
+        .company {
+            width: 20%;
+            @extend %flexbox;
+            align-items: center;
+            justify-content: center;
+            img {
+                width: 30px;
+                margin-right: 5px;
+            }
+            h4 {
+                font-weight: normal;
+                color: $whiteColor;
+            }
+        }
+        .copyrights{
+            width: 80%;
+            @extend %flexbox;
+            align-items: center;
+            color: $whiteColor;
+            direction: rtl;
+            h4 {
+                font-weight: normal;
+                direction: ltr;
+                margin-right: 60px;
+            }
+        }
+    }
+}

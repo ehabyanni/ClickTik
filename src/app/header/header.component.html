@@ -1,0 +1,30 @@
+<div class="container1">
+    <div class="container2">
+        <div class="company">
+            <img src="assets/images/logo.png">
+            <h4>ClickTik</h4>
+        </div>
+        <div *ngIf="isLoggedIn; then accountBlock; else loginBlock"></div>
+        <ng-template #accountBlock>
+            <div class="navBar">
+                <div class="navigation">
+                    <a>Home</a>
+                </div>
+                <div class="searchbar">
+                    <input type="search" placeholder="Search...">
+                </div>
+            </div>
+            <div class="status">
+                <a routerLink="/login">Account</a>
+            </div>
+        </ng-template>
+        <ng-template #loginBlock>
+            <div class="navBar">
+                <a>Home</a>
+            </div>
+            <div class="status">
+                <a routerLink="/login">Login</a>
+            </div>
+        </ng-template>
+    </div>
+</div>
