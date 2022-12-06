@@ -29,19 +29,21 @@ $greys: rgb(75, 75, 75);
             width: 50px;
             display:block; 
             margin: auto;
+            margin-bottom: 10px;
         }
         h5{
             color: $greys;
             font-weight: normal;
+            margin-top: 8px;
         }
 
         .usernameLogin{
             @extend %flexbox;
+            padding-top: 20px;
         }
         .passwordLogin{
             @extend %flexbox;
-            padding-top: 20px; 
-            padding-bottom: 20px;
+            padding: 20px 0px;
         }
         label{
          text-align: left;
@@ -53,10 +55,11 @@ $greys: rgb(75, 75, 75);
         input{
             width:95%; 
             height: 25px; 
-            padding: 5px; 
+            padding: 15px 5px; 
             border: 1px solid rgb(161, 161, 161); 
             border-radius: 5px;
             margin:auto;
+            outline:none;
         }
         button{
             width:100%; 
@@ -74,6 +77,7 @@ $greys: rgb(75, 75, 75);
         }
         small{
             color: red;
+            padding-left: 15px;
         }
     }
 }

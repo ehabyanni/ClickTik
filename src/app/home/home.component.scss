@@ -1,4 +1,27 @@
+//variable
+$cardContent: #344054;
 
+//shared class
+%flexRow {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+%flexCol {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+%label {
+    font-size: 14px;
+    margin-right: 10px;
+    font-weight: normal;
+}
+
+
+//styling
 .container1 {
     background-color: rgb(255, 255, 255);
 
@@ -6,10 +29,8 @@
         background-color: rgb(255, 255, 255);
         width: 85%;
         margin: auto;
-        display: flex;
-        flex-direction: row;
-        padding-top: 50px;
-        padding-bottom: 50px;
+        @extend %flexRow;
+        padding: 50px 0px;
 
         .categoriesSection {
             background-color: white;
@@ -30,19 +51,15 @@
                     h4 {
                         font-size: 14px;
                         font-weight: bold;
-                        padding-top: 5px;
-                        padding-bottom: 5px;
+                        padding: 5px 0px;
                     }
                 }
 
                 .catList {
                     width: 100%;
                     height: max-content;
-                    display: flex;
-                    flex-direction: column;
-                    flex-wrap: wrap;
-                    padding-top: 10px;
-                    padding-bottom: 10px;
+                    @extend %flexCol;
+                    padding: 10px 0px;
 
                     label {
                         font-size: 14px;
@@ -53,16 +70,16 @@
         }
 
         .productsSection {
-            background-color: rgb(252, 212, 212);
+            background-color: rgb(255, 255, 255);
             width: 80%;
+
             .displayProducts {
                 background-color: rgb(255, 255, 255);
                 width: 98%;
                 margin: auto;
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                .card{
+                @extend %flexRow;
+
+                .card {
                     width: 32% !important;
                     background-color: rgb(255, 255, 255);
                     margin: auto;
@@ -72,29 +89,108 @@
                     border: 1px solid rgb(227, 227, 227);
                     border-radius: 7px;
                     overflow: hidden;
-                    img{
+
+                    .percent {
+                        position: absolute;
+                        background-color: #3dc7c7;
+                        color: $cardContent;
+                        padding: 3px 7px;
+                        font-weight: bold;
+                        font-size: 14px;
+                        margin-top: 1%;
+                        margin-left: 1%;
+                        border-radius: 3px;
+                    }
+
+                    img {
                         display: block;
                         margin-left: auto;
                         margin-right: auto;
                         height: 200px;
                     }
-                    .card-body{
+
+                    .card-body {
                         background-color: rgb(255, 255, 255);
                         padding: 10px;
-                        display: flex;
-                        flex-direction: column;
-                        flex-wrap: wrap;
-                        .title{
-                            color: black;
+                        color: $cardContent;
+
+                        //any label in card body
+                        label {
+                            @extend %label;
                         }
-                        .desc{
+
+                        .desc {
                             font-size: 14px;
-                            margin-top: 5px;
-                            margin-bottom: 5px;
+                            margin: 10px 0px;
+                            height: 70px;
+                            overflow-wrap: break-word;
+                            overflow: hidden;
+                            line-height: 17px;
                         }
-                        
+
+                        .cost {
+                            margin: 0px 0px 15px;
+                            @extend %flexRow;
+                            align-items: center;
+
+                            .price {
+                                font-size: 18px;
+                                font-weight: bold;
+                                margin-right: 5px;
+                            }
+
+                        }
+
+                        .info {
+
+                            .productBrand,
+                            .productCategory,
+                            .productQuantity {
+                                @extend %flexRow;
+                                align-items: center;
+                                margin: 5px 0px;
+
+                                p {
+                                    font-size: 14px;
+                                    font-weight: bold
+                                }
+                            }
+                        }
+
+                        .rating {
+                            margin: 10px 0px;
+                            color: rgb(255, 170, 0);
+                            font-weight: bold;
+
+                            .rate {
+                                text-align: right;
+
+                                .fa-star {
+                                    font-size: 14px;
+                                    margin-right: 5px;
+                                }
+                            }
+                        }
+
+                        .addBtn {
+                            width: 100%;
+                            height: 40px;
+                            font-weight: bolder;
+                            background-color: #56D9D9;
+                            border: none;
+                            border-radius: 5px;
+                            cursor: pointer;
+
+                            &:hover {
+                                background-color: #39baba;
+                            }
+                        }
+
                     }
 
+                    &:hover {
+                        box-shadow: 0px 0px 5px 1px rgb(227, 227, 227);
+                    }
                 }
             }
         }

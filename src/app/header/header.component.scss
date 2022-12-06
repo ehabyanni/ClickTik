@@ -19,7 +19,7 @@ $greys: rgb(75, 75, 75);
 
 
 .container1 {
-    height: 50px;
+    height: 60px;
     border-bottom: 1px solid #000;
 
     .container2 {
@@ -67,9 +67,9 @@ $greys: rgb(75, 75, 75);
                 input {
                     width: 100%;
                     height: 30px;
-                    padding: 5px;
+                    padding: 10px 5px;
                     border: 1px solid rgb(192, 192, 192);
-                    border-radius: 10px;
+                    border-radius: 7px;
                     margin: auto;
                     outline: none;
                 }

@@ -16,58 +16,35 @@
         <div class="productsSection">
             <div class="displayProducts">
                 <div class="card" *ngFor="let prod of allProducts">
+                    <small class="card-percent percent">- {{prod.discountPercentage | percent}}</small>
                     <img class="card-img-top" [src]="prod.thumbnail" alt="Card image">
                     <div class="card-body">
-                        <h4 class="card-text title">{{prod.title}}</h4>
+                        <h3 class="card-text title">{{prod.title}}</h3>
                         <p class="card-text desc">{{prod.description}}</p>
-                        <p class="card-price price">{{prod.price}} USD</p>
-                        <p class="card-percent percent">{{prod.discountPercentage | percent}}</p>
-                        <p class="card-rate rate">{{prod.rating}}</p>
-                        <p class="card-stock inStock">in Stock:{{prod.stock}}</p>
-                        <p class="card-brand brand">Brand: {{prod.brand}}</p>
-                        <p class="card-category category">Category: {{prod.category}}</p>
-                        <button>ADD TO CART</button>
+                        <div class="cost">
+                            <p class="card-price price">{{prod.price}}</p>
+                            <label>USD</label>
+                        </div>
+                        <div class="info">
+                            <div class="productBrand">
+                                <label>Brand:</label>
+                                <p class="card-brand brand">{{prod.brand}}</p>
+                            </div>
+                            <div class="productCategory">
+                                <label>Category: </label>
+                                <p class="card-category category">{{prod.category}}</p>
+                            </div>
+                            <div class="productQuantity">
+                                <label>in Stock:</label>
+                                <p class="card-stock inStock">{{prod.stock}}</p>
+                            </div>
+                        </div>
+                        <div class="rating">
+                            <p class="card-rate rate"><i class="fa-solid fa-star"></i>{{prod.rating}}</p>
+                        </div>
+                        <button type="button" class="addBtn">ADD TO CART</button>
                     </div>
                 </div>
-                <!-- <div class="card">
-                    <img class="card-img-top" src="assets/images/logo.png" alt="Card image" width="300px">
-                    <div class="card-body">
-                        <p class="card-text name">products</p>
-                        <p class="card-text desc">products</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img class="card-img-top" src="assets/images/logo.png" alt="Card image" width="300px">
-                    <div class="card-body">
-                        <p class="card-text name">products</p>
-                        <p class="card-text desc">products</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img class="card-img-top" src="assets/images/logo.png" alt="Card image" width="300px">
-                    <div class="card-body">
-                        <p class="card-text name">products</p>
-                        <p class="card-text desc">products</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img class="card-img-top" src="assets/images/logo.png" alt="Card image" width="300px">
-                    <div class="card-body">
-                        <p class="card-text name">products</p>
-                        <p class="card-text desc">products</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img class="card-img-top" src="assets/images/logo.png" alt="Card image" width="300px">
-                    <div class="card-body">
-                        <p class="card-text name">products</p>
-                        <p class="card-text desc">products</p>
-                    </div>
-                </div>
-            </div> -->
-            <!-- <div class="showProducts" *ngFor="let prod of allProducts">
-                {{prod.title}}
-            </div> -->
+            </div>
         </div>
     </div>
-</div>
