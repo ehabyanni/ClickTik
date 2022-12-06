@@ -16,11 +16,11 @@
         <div class="productsSection">
             <div class="displayProducts">
                 <div class="card" *ngFor="let prod of displayProducts | paginate
-                : {
-                    itemsPerPage: tableSize,
-                    currentPage: page,
-                    totalItems: count
-                  };
+                    : {
+                        itemsPerPage: tableSize,
+                        currentPage: page,
+                        totalItems: count
+                    };
                     let i = index">
                     <small class="card-percent percent">- {{prod.discountPercentage | percent}}</small>
                     <img class="card-img-top" [src]="prod.thumbnail" alt="Card image">

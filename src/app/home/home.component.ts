@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
   //pagination variables
   page: number = 1;
   count: number = 0;
-  tableSize: number = 6;
+  tableSize: number = 9;
 
 
   ngOnInit(): void {
@@ -66,30 +66,30 @@ export class HomeComponent implements OnInit {
     var categorySelected = event.target.value;
     var checkboxStatus = document.getElementById('catName') as HTMLInputElement;
 
-    console.log(categorySelected);
+    // console.log(categorySelected);
 
-    if (checkboxStatus.checked) {
-      console.log('checked');
-      console.log(checkboxStatus.checked);
-    }
-    else {
-      console.log('unChecked')
-      console.log(checkboxStatus.checked)
-    }
-
-
-
-    // if(categorySelected){
-    //   this.productService.getProductsByCategory(categorySelected).subscribe(
-    //     data => {
-    //       this.allProducts = data.products;
-    //       this.displayProducts = this.allProducts;
-    //     }
-    //   )
+    // if (checkboxStatus.checked) {
+    //   console.log('checked');
+    //   console.log(checkboxStatus.checked);
     // }
-    // else{
-    //   this.getProducts();
+    // else {
+    //   console.log('unChecked')
+    //   console.log(checkboxStatus.checked)
     // }
+
+
+
+    if(categorySelected){
+      this.productService.getProductsByCategory(categorySelected).subscribe(
+        data => {
+          this.allProducts = data.products;
+          this.displayProducts = this.allProducts;
+        }
+      )
+    }
+    else{
+      this.getProducts();
+    }
   }
 
 

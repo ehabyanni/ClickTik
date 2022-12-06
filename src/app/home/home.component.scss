@@ -53,6 +53,7 @@ $cardContent: #344054;
                     width: 100%;
                     height: max-content;
                     padding: 10px 0px;
+
                     label {
                         font-size: 14px;
                         margin-left: 5px;
@@ -70,14 +71,18 @@ $cardContent: #344054;
                 width: 98%;
                 margin: auto;
                 @extend %flexRow;
-                // &::after {
-                //     content: "";
-                //     flex: auto;
-                //     width: 30%;
-                //   }
+                justify-items: flex-start;
+
+                //last row in flexbox
+                &::after {
+                    content: "";
+                    width: 32% !important;
+                    margin: 0% 0.5%;
+                    background-color: rgb(255, 255, 255);
+                }
 
                 .card {
-                    width: 32% !important;
+                    flex-basis: 32%;
                     background-color: rgb(255, 255, 255);
                     margin: auto;
                     margin-bottom: 15px;
