@@ -7,7 +7,7 @@
                 </div>
                 <div class="catList">
                     <div *ngFor="let cat of allCategories">
-                        <input type="checkbox" id="catName" name={{cat}} value={{cat}} (change)="showCategory($event)">
+                        <input type="checkbox" id="catName" name={{cat}} value={{cat}} (click)="showCategory($event)">
                         <label for={{cat}}>{{cat}}</label>
                     </div>
                 </div>
@@ -15,7 +15,13 @@
         </div>
         <div class="productsSection">
             <div class="displayProducts">
-                <div class="card" *ngFor="let prod of allProducts">
+                <div class="card" *ngFor="let prod of displayProducts | paginate
+                : {
+                    itemsPerPage: tableSize,
+                    currentPage: page,
+                    totalItems: count
+                  };
+                    let i = index">
                     <small class="card-percent percent">- {{prod.discountPercentage | percent}}</small>
                     <img class="card-img-top" [src]="prod.thumbnail" alt="Card image">
                     <div class="card-body">
@@ -46,5 +52,13 @@
                     </div>
                 </div>
             </div>
+            <div style="background-color: rgb(255, 255, 255); padding: 10px 0px; display: flex; justify-content: center;">
+                    <pagination-controls 
+                        previousLabel="Prev" 
+                        nextLabel="Next"
+                        (pageChange)="onTableDataChange($event)">
+                    </pagination-controls>
+            </div>
         </div>
     </div>
+</div>

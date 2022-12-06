@@ -19,7 +19,7 @@ export class AuthInterceptor implements HttpInterceptor {
           setHeaders: { Authorization: `Bearer ${token}` },
         });
       }
-      console.log(request);
+      //console.log(request);
       return next.handle(request);
     }
 

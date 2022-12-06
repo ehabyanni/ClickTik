@@ -5,25 +5,18 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AllProductsService {
+export class SearchService {
 
   constructor(
     private http : HttpClient
   ) { }
 
 
-  public _url = 'https://dummyjson.com/products';
-
-  public _urlSearch = 'https://dummyjson.com/products/category/';
+  public _url = 'https://dummyjson.com/products/search?q=phone';
 
 
   //show all movies
   getAllProducts():Observable<any>{
     return this.http.get(this._url);
-  }
-
-
-  getProductsByCategory(categoryName:string):Observable<any>{
-    return this.http.get(this._urlSearch + categoryName);
   }
 }

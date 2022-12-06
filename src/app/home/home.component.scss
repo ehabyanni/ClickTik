@@ -8,12 +8,6 @@ $cardContent: #344054;
     flex-wrap: wrap;
 }
 
-%flexCol {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-}
-
 %label {
     font-size: 14px;
     margin-right: 10px;
@@ -58,9 +52,7 @@ $cardContent: #344054;
                 .catList {
                     width: 100%;
                     height: max-content;
-                    @extend %flexCol;
                     padding: 10px 0px;
-
                     label {
                         font-size: 14px;
                         margin-left: 5px;
@@ -78,6 +70,11 @@ $cardContent: #344054;
                 width: 98%;
                 margin: auto;
                 @extend %flexRow;
+                // &::after {
+                //     content: "";
+                //     flex: auto;
+                //     width: 30%;
+                //   }
 
                 .card {
                     width: 32% !important;
