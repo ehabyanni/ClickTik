@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { HeaderComponent } from '../header/header.component';
 import { AllCategoriesService } from '../_services/all-categories.service';
 import { AllProductsService } from '../_services/all-products.service';
 
@@ -16,6 +17,9 @@ export class HomeComponent implements OnInit {
     private productService: AllProductsService
   ) { }
 
+
+  @ViewChild(HeaderComponent) searchFunc!: HeaderComponent;
+
   allCategories: any = [];
   allProducts: any = [];
 
@@ -24,6 +28,9 @@ export class HomeComponent implements OnInit {
 
   //for category selection result
   productsOfCategory: any = [];
+
+  //search word
+  searchWord: any;
 
 
   //pagination variables
@@ -48,7 +55,34 @@ export class HomeComponent implements OnInit {
 
     //get products
     this.getProducts();
+
+
   }
+
+  //after header component to be loaded completely
+  ngAfterViewInit() {
+    this.searchFunc.headerSearchToHome.subscribe(
+      data => {
+        this.searchWord = data;
+        if (this.searchWord != null || this.searchWord != undefined) {
+          this.productService.getAllProducts().subscribe(
+            dataCollection => {
+              console.log(this.searchWord);
+              this.allProducts = dataCollection.products.filter((p: any) => {
+                return p.title.toLowerCase().includes(this.searchWord.toLowerCase());
+              });
+              this.displayProducts = this.allProducts;
+            }
+          )
+        }
+        else {
+          console.log("test test asfoury test test");
+          this.getProducts();
+        }
+      }
+    );
+  }
+
 
 
   //get all products function
@@ -79,7 +113,7 @@ export class HomeComponent implements OnInit {
 
 
 
-    if(categorySelected){
+    if (categorySelected) {
       this.productService.getProductsByCategory(categorySelected).subscribe(
         data => {
           this.allProducts = data.products;
@@ -87,7 +121,7 @@ export class HomeComponent implements OnInit {
         }
       )
     }
-    else{
+    else {
       this.getProducts();
     }
   }

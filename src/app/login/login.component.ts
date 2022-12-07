@@ -37,6 +37,15 @@ export class LoginComponent implements OnInit {
   errorMessage  : string  = '';
 
   ngOnInit(): void {
+    //check if the user authenticated or not
+    var token = localStorage.getItem('authToken');
+    if (token == null || undefined) {
+      this.isLoggedIn = false;
+    }
+    else{
+      this.isLoggedIn = true;
+      this.router.navigate(['home']);
+    }
   }
 
   onSubmit(){

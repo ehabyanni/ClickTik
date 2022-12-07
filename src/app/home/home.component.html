@@ -1,3 +1,7 @@
+<app-header (headerSearchToHome)="searchWord=$event"></app-header>
+
+{{searchWord}}
+
 <div class="container1">
     <div class="container2">
         <div class="categoriesSection">
@@ -14,7 +18,7 @@
             </div>
         </div>
         <div class="productsSection">
-            <div class="displayProducts">
+            <div class="displayProducts" *ngIf="displayProducts && displayProducts.length > 0; else nothingBlock;">
                 <div class="card" *ngFor="let prod of displayProducts | paginate
                     : {
                         itemsPerPage: tableSize,
@@ -51,14 +55,16 @@
                         <button type="button" class="addBtn">ADD TO CART</button>
                     </div>
                 </div>
-            </div>
-            <div style="background-color: rgb(255, 255, 255); padding: 10px 0px; display: flex; justify-content: center;">
-                    <pagination-controls 
-                        previousLabel="Prev" 
-                        nextLabel="Next"
-                        (pageChange)="onTableDataChange($event)">
+                <div
+                    style="background-color: rgb(255, 255, 255); padding: 10px 0px; display: flex; justify-content: center;">
+                    <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
                     </pagination-controls>
+                </div>
             </div>
+            <ng-template #nothingBlock>
+                <p style="text-align: center;">there are no products</p>
+            </ng-template>
+
         </div>
     </div>
 </div>
