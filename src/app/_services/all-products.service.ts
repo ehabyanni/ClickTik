@@ -14,16 +14,20 @@ export class AllProductsService {
 
   public _url = 'https://dummyjson.com/products';
 
-  public _urlSearch = 'https://dummyjson.com/products/category/';
+  public _urlcatProducts = 'https://dummyjson.com/products/category/';
 
 
-  //show all movies
+  //show all products
   getAllProducts():Observable<any>{
     return this.http.get(this._url);
   }
 
+  getAllProductslimit(limit:number , skip : number):Observable<any>{
+    return this.http.get(this._url + `?limit=${limit}&skip=${skip}`);
+  }
+
 
   getProductsByCategory(categoryName:string):Observable<any>{
-    return this.http.get(this._urlSearch + categoryName);
+    return this.http.get(this._urlcatProducts + `${categoryName}`);
   }
 }

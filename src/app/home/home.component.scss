@@ -19,6 +19,7 @@ $cardContent: #344054;
 .container1 {
     background-color: rgb(255, 255, 255);
     min-height: 100vh;
+
     .container2 {
         background-color: rgb(255, 255, 255);
         width: 85%;
@@ -202,6 +203,31 @@ $cardContent: #344054;
                     &:hover {
                         box-shadow: 0px 0px 5px 2px rgb(214, 214, 214);
                     }
+                }
+            }
+
+            .pagination {
+                background-color: rgb(255, 255, 255); 
+                padding: 10px 0px; 
+                @extend %flexRow; 
+                justify-content: center; 
+                gap: 10px;
+                .pagesNumber {
+                    background-color: rgb(255, 255, 255);
+                    padding: 5px 10px;
+                    border-radius: 7px;
+                    cursor: pointer;
+                    font-size: 14px;
+                    color: $cardContent;
+                    font-weight: bold;
+
+                    &:hover {
+                        background-color: #39baba;
+                    }
+                }
+
+                .activePage {
+                    background-color: #39baba;
                 }
             }
         }

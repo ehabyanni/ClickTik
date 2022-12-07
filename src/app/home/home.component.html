@@ -1,6 +1,4 @@
-<app-header (headerSearchToHome)="searchWord=$event"></app-header>
-
-{{searchWord}}
+<app-header></app-header>
 
 <div class="container1">
     <div class="container2">
@@ -18,49 +16,49 @@
             </div>
         </div>
         <div class="productsSection">
-            <div class="displayProducts" *ngIf="displayProducts && displayProducts.length > 0; else nothingBlock;">
-                <div class="card" *ngFor="let prod of displayProducts | paginate
-                    : {
-                        itemsPerPage: tableSize,
-                        currentPage: page,
-                        totalItems: count
-                    };
-                    let i = index">
-                    <small class="card-percent percent">- {{prod.discountPercentage | percent}}</small>
-                    <img class="card-img-top" [src]="prod.thumbnail" alt="Card image">
-                    <div class="card-body">
-                        <h3 class="card-text title">{{prod.title}}</h3>
-                        <p class="card-text desc">{{prod.description}}</p>
-                        <div class="cost">
-                            <p class="card-price price">{{prod.price}}</p>
-                            <label>USD</label>
-                        </div>
-                        <div class="info">
-                            <div class="productBrand">
-                                <label>Brand:</label>
-                                <p class="card-brand brand">{{prod.brand}}</p>
+            <div *ngIf="displayProducts && displayProducts.length > 0; then productsBlock; else nothingBlock"></div>
+            <ng-template #productsBlock>
+                <div class="displayProducts">
+                    <div class="card" *ngFor="let prod of displayProducts">
+                        <small class="card-percent percent">- {{prod.discountPercentage | percent}}</small>
+                        <img class="card-img-top" [src]="prod.thumbnail" alt="Card image">
+                        <div class="card-body">
+                            <h3 class="card-text title">{{prod.title}}</h3>
+                            <p class="card-text desc">{{prod.description}}</p>
+                            <div class="cost">
+                                <p class="card-price price">{{prod.price}}</p>
+                                <label>USD</label>
                             </div>
-                            <div class="productCategory">
-                                <label>Category: </label>
-                                <p class="card-category category">{{prod.category}}</p>
+                            <div class="info">
+                                <div class="productBrand">
+                                    <label>Brand:</label>
+                                    <p class="card-brand brand">{{prod.brand}}</p>
+                                </div>
+                                <div class="productCategory">
+                                    <label>Category: </label>
+                                    <p class="card-category category">{{prod.category}}</p>
+                                </div>
+                                <div class="productQuantity">
+                                    <label>in Stock:</label>
+                                    <p class="card-stock inStock">{{prod.stock}}</p>
+                                </div>
                             </div>
-                            <div class="productQuantity">
-                                <label>in Stock:</label>
-                                <p class="card-stock inStock">{{prod.stock}}</p>
+                            <div class="rating">
+                                <p class="card-rate rate"><i class="fa-solid fa-star"></i>{{prod.rating}}</p>
                             </div>
+                            <button type="button" class="addBtn">ADD TO CART</button>
                         </div>
-                        <div class="rating">
-                            <p class="card-rate rate"><i class="fa-solid fa-star"></i>{{prod.rating}}</p>
-                        </div>
-                        <button type="button" class="addBtn">ADD TO CART</button>
                     </div>
                 </div>
-                <div
-                    style="background-color: rgb(255, 255, 255); padding: 10px 0px; display: flex; justify-content: center;">
-                    <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
-                    </pagination-controls>
+                <div class="pagination">
+                    <div *ngFor="let page of totalPagesArray">
+                        <p class="pagesNumber" (click)="getPageProducts(page.page , page.skip)">
+                            {{page.page}}
+                        </p>
+                    </div>
                 </div>
-            </div>
+            </ng-template>
+
             <ng-template #nothingBlock>
                 <p style="text-align: center;">there are no products</p>
             </ng-template>
