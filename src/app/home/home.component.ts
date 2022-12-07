@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { AllCategoriesService } from '../_services/all-categories.service';
 import { AllProductsService } from '../_services/all-products.service';
+import { SearchServiceService } from '../_services/search-service.service';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private router: Router,
     private categoryService: AllCategoriesService,
-    private productService: AllProductsService
+    private productService: AllProductsService,
+    private searchService : SearchServiceService
   ) { }
 
 
@@ -34,9 +36,7 @@ export class HomeComponent implements OnInit {
 
 
   //pagination variables
-  tableSize: number = 9;
-  page: number = 1;
-  count: number = 0;
+  currentPage: number = 1;
   total: number = 1;
   skip: number = 0;
   limit: number = 30;
@@ -68,13 +68,19 @@ export class HomeComponent implements OnInit {
     this.searchFunc.headerSearchToHome.subscribe(
       data => {
         this.searchWord = data;
-        if (this.searchWord != null || this.searchWord != undefined) {
-          this.productService.getAllProducts().subscribe(
+        if (this.searchWord != null || this.searchWord != undefined || this.searchWord != "") {
+          // this.productService.getAllProducts().subscribe(
+          //   dataCollection => {
+          //     console.log(this.searchWord);
+          //     this.allProducts = dataCollection.products.filter((p: any) => {
+          //       return p.title.toLowerCase().includes(this.searchWord.toLowerCase());
+          //     });
+          //     this.displayProducts = this.allProducts;
+          //   }
+          // )
+          this.searchService.searchProducts(this.searchWord).subscribe(
             dataCollection => {
-              console.log(this.searchWord);
-              this.allProducts = dataCollection.products.filter((p: any) => {
-                return p.title.toLowerCase().includes(this.searchWord.toLowerCase());
-              });
+              this.allProducts = dataCollection.products;
               this.displayProducts = this.allProducts;
             }
           )
@@ -114,7 +120,7 @@ export class HomeComponent implements OnInit {
 
   //pagination
   getPageProducts(pageValue: any, skipValue: any) {
-    console.log(pageValue + " - " + skipValue);
+    this.currentPage = pageValue;
     this.productService.getAllProductslimit(this.limit, skipValue).subscribe(
       data => {
         this.allProducts = data.products;
@@ -123,37 +129,11 @@ export class HomeComponent implements OnInit {
     )
   }
 
-  categoryProducts: any = [];
-  productsByCategory: any = [];
-
-  //show by category
-  // showCategory(event: any) {
-  //   var categorySelected = event.target.value;
-
-  //   if (categorySelected) {
-  //     this.categoryProducts.push(categorySelected);
-  //     // this.productService.getProductsByCategory(categorySelected).subscribe(
-  //     //   data => {
-  //     //     this.productsByCategory = [...this.productsByCategory , ...data.products];
-  //     //     this.displayProducts = this.productsByCategory;
-  //     //   }
-  //     // )
-  //     this.categoryProducts.map((cat: any) => {
-  //       this.productService.getProductsByCategory(cat).subscribe(
-  //         data => {
-  //           this.productsByCategory = [...this.productsByCategory, ...data.products];
-  //           this.displayProducts = this.productsByCategory;
-  //         }
-  //       )
-  //     })
-  //   }
-  //   else {
-  //     this.getProducts();
-  //   }
-  // }
 
   categoriesCheckBoxes: any = [];
   categoriesProducts: any = [];
+
+  //show products by category
 
   showCategory(event: any) {
     //get the category has been selected
@@ -183,10 +163,17 @@ export class HomeComponent implements OnInit {
       //delete this category name
       this.categoriesCheckBoxes.splice(eleIndex, 1);
       console.log(this.categoriesCheckBoxes.length);
+      //if checkboxes nothing checked
       if (this.categoriesCheckBoxes.length == 0) {
+        this.categoriesProducts = [];
+        this.currentPage = 1;
+        this.total = 1;
+        this.skip = 0;
+        this.totalPages = 1;
+        this.totalPagesArray = [];
         this.getProducts();
-        console.log("hi");
       }
+      //if checkboxes still checked
       else {
         //loop on array to send the category name to the method and store its products
         for (let i = 0; i < this.categoriesCheckBoxes.length; i++) {
@@ -202,7 +189,7 @@ export class HomeComponent implements OnInit {
           )
         }
       }
-     
+
     }
 
   }

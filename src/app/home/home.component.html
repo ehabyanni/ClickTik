@@ -50,15 +50,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="pagination">
+                <div class="pagination" *ngIf="categoriesCheckBoxes.length == 0">
                     <div *ngFor="let page of totalPagesArray">
-                        <p class="pagesNumber" (click)="getPageProducts(page.page , page.skip)">
+                        <div class="pagesNumber" [class.activePage]="currentPage === page.page" (click)="getPageProducts(page.page , page.skip)">
                             {{page.page}}
-                        </p>
+                        </div>
                     </div>
                 </div>
             </ng-template>
-
             <ng-template #nothingBlock>
                 <p style="text-align: center;">there are no products</p>
             </ng-template>
