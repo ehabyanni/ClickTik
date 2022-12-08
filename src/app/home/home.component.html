@@ -57,7 +57,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="pagination" *ngIf="categoriesCheckBoxes.length == 0">
+                <!--remove pagination when search or get by category-->
+                <div class="pagination" *ngIf="(categoriesCheckBoxes.length == 0) && (!Searching)">
                     <div *ngFor="let page of totalPagesArray">
                         <div class="pagesNumber" [class.activePage]="currentPage === page.page"
                             (click)="getPageProducts(page.page , page.skip)">
@@ -66,6 +67,7 @@
                     </div>
                 </div>
             </ng-template>
+            <!--if there're no products to display-->
             <ng-template #nothingBlock>
                 <p style="text-align: center;">there are no products</p>
             </ng-template>

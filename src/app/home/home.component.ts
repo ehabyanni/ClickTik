@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private categoryService: AllCategoriesService,
     private productService: AllProductsService,
-    private searchService : SearchServiceService
+    private searchService: SearchServiceService
   ) { }
 
 
@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
 
   //search word
   searchWord: any;
-  notSearching:boolean = true;
+  Searching: boolean = false;
 
 
   //pagination variables
@@ -69,7 +69,7 @@ export class HomeComponent implements OnInit {
     this.searchFunc.headerSearchToHome.subscribe(
       data => {
         this.searchWord = data;
-        if (this.searchWord != null || this.searchWord != undefined || this.searchWord.length > 0) {
+        if (((this.searchWord != null) || (this.searchWord != undefined)) && (this.searchWord.length >= 1)) {
           // this.productService.getAllProducts().subscribe(
           //   dataCollection => {
           //     console.log(this.searchWord);
@@ -79,6 +79,7 @@ export class HomeComponent implements OnInit {
           //     this.displayProducts = this.allProducts;
           //   }
           // )
+          this.Searching = true;
           this.searchService.searchProducts(this.searchWord).subscribe(
             dataCollection => {
               this.allProducts = dataCollection.products;
@@ -87,7 +88,15 @@ export class HomeComponent implements OnInit {
           )
         }
         else {
-          console.log("test test asfoury test test");
+          this.Searching = false;
+
+          //reset the pagination 
+          this.currentPage = 1;
+          this.total = 1;
+          this.skip = 0;
+          this.totalPages = 1;
+          this.totalPagesArray = [];
+          //calling the endPoint
           this.getProducts();
         }
       }
@@ -122,7 +131,7 @@ export class HomeComponent implements OnInit {
   //pagination
   getPageProducts(pageValue: any, skipValue: any) {
     this.currentPage = pageValue;
-    window.scrollTo({top:0 , behavior: 'smooth'});
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     this.productService.getAllProductslimit(this.limit, skipValue).subscribe(
       data => {
         this.allProducts = data.products;
@@ -164,7 +173,6 @@ export class HomeComponent implements OnInit {
       var eleIndex = this.categoriesCheckBoxes.indexOf(categorySelected);
       //delete this category name
       this.categoriesCheckBoxes.splice(eleIndex, 1);
-      console.log(this.categoriesCheckBoxes.length);
       //if checkboxes nothing checked
       if (this.categoriesCheckBoxes.length == 0) {
         this.categoriesProducts = [];

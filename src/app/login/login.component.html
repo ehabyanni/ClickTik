@@ -25,12 +25,12 @@
                         [class.is-invalid]="PASSWORD?.invalid && PASSWORD?.touched">
                     <div *ngIf="PASSWORD?.errors && PASSWORD?.touched">
                         <small *ngIf="PASSWORD?.errors?.['required']">Required</small>
-                        <small *ngIf="PASSWORD?.errors?.['minLength']">Minimum 6 char</small>
+                        <small *ngIf="PASSWORD?.errors?.['minlength']">Minimum 6 char</small>
                     </div>
                 </div>
 
                 <div class="subBtn">
-                    <button type="submit">Sign in</button>
+                    <button [disabled]="USERNAME?.invalid || PASSWORD?.invalid" type="submit">Sign in</button>
                 </div>
             </form>
         </div>
