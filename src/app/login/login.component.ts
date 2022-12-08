@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
 
   isLoggedIn    : boolean = false;
   isLoginFailed : boolean = false;
+  errorMessage : string = "";
 
   ngOnInit(): void {
     //check if the user authenticated or not
@@ -58,9 +59,14 @@ export class LoginComponent implements OnInit {
           this.isLoggedIn = true;
           this.isLoginFailed = false;
           this.router.navigate(['home']);
+        },
+        err => {
+          this.errorMessage = "username or password is invalid"
         }
       );
+      
     }
+    
   }
 
 }

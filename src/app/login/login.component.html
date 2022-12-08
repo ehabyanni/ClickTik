@@ -32,6 +32,9 @@
                 <div class="subBtn">
                     <button [disabled]="USERNAME?.invalid || PASSWORD?.invalid" type="submit">Sign in</button>
                 </div>
+                <p style="color: red; font-size: 12px; margin-top: 10px;">
+                    {{errorMessage}}
+                </p>
             </form>
         </div>
     </div>
