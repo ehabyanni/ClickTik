@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit {
 
   //search word
   searchWord: any;
+  notSearching:boolean = true;
 
 
   //pagination variables
@@ -68,7 +69,7 @@ export class HomeComponent implements OnInit {
     this.searchFunc.headerSearchToHome.subscribe(
       data => {
         this.searchWord = data;
-        if (this.searchWord != null || this.searchWord != undefined || this.searchWord != "") {
+        if (this.searchWord != null || this.searchWord != undefined || this.searchWord.length > 0) {
           // this.productService.getAllProducts().subscribe(
           //   dataCollection => {
           //     console.log(this.searchWord);
@@ -121,6 +122,7 @@ export class HomeComponent implements OnInit {
   //pagination
   getPageProducts(pageValue: any, skipValue: any) {
     this.currentPage = pageValue;
+    window.scrollTo({top:0 , behavior: 'smooth'});
     this.productService.getAllProductslimit(this.limit, skipValue).subscribe(
       data => {
         this.allProducts = data.products;

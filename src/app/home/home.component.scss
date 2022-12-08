@@ -1,5 +1,6 @@
 //variable
 $cardContent: #344054;
+$primaryColor: #39baba;
 
 //shared class
 %flexRow {
@@ -28,18 +29,21 @@ $cardContent: #344054;
         padding: 50px 0px;
 
         .categoriesSection {
-            background-color: white;
+            background-color: rgb(255, 255, 255);
             width: 20%;
             height: fit-content;
-            border: 1px solid rgb(227, 227, 227);
-            border-radius: 7px;
 
             .catSection {
                 width: 95%;
                 margin: auto;
+                height: fit-content;
+                border: 1px solid rgb(227, 227, 227);
+                border-radius: 7px;
+                background-color: #ffffff;
 
                 .title {
-                    width: 100%;
+                    width: 95%;
+                    margin: auto;
                     height: max-content;
                     border-bottom: 1px solid rgb(227, 227, 227);
 
@@ -51,13 +55,36 @@ $cardContent: #344054;
                 }
 
                 .catList {
-                    width: 100%;
+                    width: 95%;
+                    margin: auto;
                     height: max-content;
                     padding: 10px 0px;
 
                     label {
                         font-size: 14px;
                         margin-left: 5px;
+                    }
+                }
+            }
+
+            .plusContainer {
+                background-color: rgb(255, 255, 255);
+
+                .selectedCategories {
+                    width: 85%;
+                    margin: auto;
+                    padding-top: 10px;
+                    @extend %flexRow;
+
+                    .itemSelect {
+                        width: fit-content;
+                        padding: 5px;
+                        margin-top: 5px;
+                        margin-right: 5px;
+                        font-size: 12px;
+                        border-radius: 5px;
+                        background-color: $primaryColor;
+                        color: black;
                     }
                 }
             }
@@ -194,7 +221,7 @@ $cardContent: #344054;
                             margin-top: auto;
 
                             &:hover {
-                                background-color: #39baba;
+                                background-color: $primaryColor;
                             }
                         }
 
@@ -207,11 +234,12 @@ $cardContent: #344054;
             }
 
             .pagination {
-                background-color: rgb(255, 255, 255); 
-                padding: 10px 0px; 
-                @extend %flexRow; 
-                justify-content: center; 
+                background-color: rgb(255, 255, 255);
+                padding: 10px 0px;
+                @extend %flexRow;
+                justify-content: center;
                 gap: 10px;
+
                 .pagesNumber {
                     background-color: rgb(255, 255, 255);
                     padding: 5px 10px;

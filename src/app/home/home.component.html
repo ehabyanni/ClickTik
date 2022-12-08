@@ -14,6 +14,13 @@
                     </div>
                 </div>
             </div>
+            <div class="plusContainer" *ngIf="categoriesCheckBoxes.length > 0">
+                <div class="selectedCategories">
+                    <div class="itemSelect" *ngFor="let cat of categoriesCheckBoxes">
+                        {{cat}}
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="productsSection">
             <div *ngIf="displayProducts && displayProducts.length > 0; then productsBlock; else nothingBlock"></div>
@@ -52,7 +59,8 @@
                 </div>
                 <div class="pagination" *ngIf="categoriesCheckBoxes.length == 0">
                     <div *ngFor="let page of totalPagesArray">
-                        <div class="pagesNumber" [class.activePage]="currentPage === page.page" (click)="getPageProducts(page.page , page.skip)">
+                        <div class="pagesNumber" [class.activePage]="currentPage === page.page"
+                            (click)="getPageProducts(page.page , page.skip)">
                             {{page.page}}
                         </div>
                     </div>
