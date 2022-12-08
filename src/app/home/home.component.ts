@@ -70,15 +70,6 @@ export class HomeComponent implements OnInit {
       data => {
         this.searchWord = data;
         if (((this.searchWord != null) || (this.searchWord != undefined)) && (this.searchWord.length >= 1)) {
-          // this.productService.getAllProducts().subscribe(
-          //   dataCollection => {
-          //     console.log(this.searchWord);
-          //     this.allProducts = dataCollection.products.filter((p: any) => {
-          //       return p.title.toLowerCase().includes(this.searchWord.toLowerCase());
-          //     });
-          //     this.displayProducts = this.allProducts;
-          //   }
-          // )
           this.Searching = true;
           this.searchService.searchProducts(this.searchWord).subscribe(
             dataCollection => {
@@ -89,7 +80,6 @@ export class HomeComponent implements OnInit {
         }
         else {
           this.Searching = false;
-
           //reset the pagination 
           this.currentPage = 1;
           this.total = 1;
@@ -199,8 +189,6 @@ export class HomeComponent implements OnInit {
           )
         }
       }
-
     }
-
   }
 }
