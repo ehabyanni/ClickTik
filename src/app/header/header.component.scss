@@ -84,6 +84,21 @@ $greys: rgb(75, 75, 75);
                 @extend %link;
                 cursor: pointer;
             }
+
+            .fa-cart-shopping{
+                color: $greys;
+            }
+            .cartItemNumber{
+                background-color: #39baba;
+                color: white;
+                font-size: 12px;
+                padding: 1px 5px;
+                border-radius: 50px;
+                border: 2px solid white;
+                position: relative;
+                top: -10px;
+                left: -8px;
+            }
         }
     }
 }

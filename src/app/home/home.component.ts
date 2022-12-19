@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
+import { IProduct } from '../_interfaces/IProduct';
 import { AllCategoriesService } from '../_services/all-categories.service';
 import { AllProductsService } from '../_services/all-products.service';
 import { SearchServiceService } from '../_services/search-service.service';
@@ -23,13 +24,13 @@ export class HomeComponent implements OnInit {
   @ViewChild(HeaderComponent) searchFunc!: HeaderComponent;
 
   allCategories: any = [];
-  allProducts: any = [];
+  allProducts: IProduct[] = [];
 
   //products that will be displayed
-  displayProducts: any = [];
+  displayProducts: IProduct[] = [];
 
   //for category selection result
-  productsOfCategory: any = [];
+  productsOfCategory: IProduct[] = [];
 
   //search word
   searchWord: any;
@@ -131,8 +132,8 @@ export class HomeComponent implements OnInit {
   }
 
 
-  categoriesCheckBoxes: any = [];
-  categoriesProducts: any = [];
+  categoriesCheckBoxes: string[] = [];
+  categoriesProducts: IProduct[] = [];
 
   //show products by category
 
@@ -190,5 +191,23 @@ export class HomeComponent implements OnInit {
         }
       }
     }
+  }
+
+
+  //cart feature
+
+  cartProducts:IProduct[] = [];
+  cartLength:number = 0;
+
+  addToCart(id:any){
+    this.productService.getOneProduct(id).subscribe(
+      data => {
+        this.cartProducts.push(data);
+        //set data into session storage "json to string"
+        //sessionStorage.setItem("CartPtoducts",JSON.stringify(this.cartProducts));
+        this.cartLength = this.cartProducts.length;
+        console.log(this.cartLength);
+      }
+    )
   }
 }

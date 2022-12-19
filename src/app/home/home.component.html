@@ -1,4 +1,4 @@
-<app-header></app-header>
+<app-header [cartProductsLength]="cartLength"></app-header>
 
 <div class="container1">
     <div class="container2">
@@ -53,7 +53,7 @@
                             <div class="rating">
                                 <p class="card-rate rate"><i class="fa-solid fa-star"></i>{{prod.rating}}</p>
                             </div>
-                            <button type="button" class="addBtn">ADD TO CART</button>
+                            <button type="button" class="addBtn" (click)="addToCart(prod.id)">ADD TO CART</button>
                         </div>
                     </div>
                 </div>

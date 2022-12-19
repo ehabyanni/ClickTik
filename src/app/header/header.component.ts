@@ -1,5 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { HomeComponent } from '../home/home.component';
 
 @Component({
   selector: 'app-header',
@@ -13,6 +14,8 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   @Output() headerSearchToHome = new EventEmitter();
+
+  @Input() cartProductsLength = 0;
 
   isLoggedIn: boolean = false;
 
@@ -39,5 +42,6 @@ export class HeaderComponent implements OnInit {
     var word = event.target.value;
     this.headerSearchToHome.emit(word);
   }
+
 
 }
