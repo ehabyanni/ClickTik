@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './_helpers/auth.interceptor';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { TestGuardComponent } from './test-guard/test-guard.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HeaderComponent,
     FooterComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    TestGuardComponent
   ],
   imports: [
     BrowserModule,

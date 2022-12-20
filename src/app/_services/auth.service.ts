@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { Observable, of } from 'rxjs';
 
 const AUTH_API = 'https://dummyjson.com/auth/login';
 
@@ -21,5 +22,18 @@ export class AuthService {
       username: username,
       password: password
     }, httpOptions);
+  }
+
+  public isLoggedIn():Observable<any>{
+    let isAuth : boolean = false;
+    const token = localStorage.getItem('authToken');
+    if(token != null || undefined){
+      isAuth = true;
+    }
+    return of (isAuth);
+  }
+
+  public logout(){
+    localStorage.clear();
   }
 }

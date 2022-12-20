@@ -16,7 +16,8 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         <ng-template #accountBlock>
             <div class="navBar">
                 <div class="navigation">
-                    <a>Home</a>
+                    <a routerLink="/home">Home</a>
+                    <a routerLink="/testGuard" style="margin-left: 10px;">test</a>
                 </div>
                 <div class="searchbar">
                     <input type="search" placeholder="Search" (keyup)="search($event)">

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { HomeComponent } from '../home/home.component';
+import { AuthService } from '../_services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +11,7 @@ import { HomeComponent } from '../home/home.component';
 export class HeaderComponent implements OnInit {
 
   constructor(
+    private authService:AuthService ,
     private router : Router
   ) { }
 
@@ -32,7 +34,7 @@ export class HeaderComponent implements OnInit {
 
 
   signOut(){
-    localStorage.clear();
+    this.authService.logout();
     this.router.navigate(['login']);
   }
 
