@@ -26,6 +26,8 @@ export class AuthService {
     }, httpOptions);
   }
 
+
+  //check Authentication
   public isLoggedIn(): Observable<any> {
     let isAuth: boolean = false;
     const token = localStorage.getItem('authToken');

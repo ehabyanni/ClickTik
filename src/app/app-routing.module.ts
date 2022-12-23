@@ -6,13 +6,19 @@ import { TestGuardComponent } from './test-guard/test-guard.component';
 import { isAuthenticatedGaurd } from './_gaurds/isAuthenticated.guard';
 
 const routes: Routes = [
-  { path: ''                , component: LoginComponent             },
-  { path: "login"           , component: LoginComponent             },
-  { path: "home"            , component: HomeComponent           
-                            , canActivate: [isAuthenticatedGaurd]   },
-  { path: "testGuard"       , component: TestGuardComponent       
-                            , canActivate: [isAuthenticatedGaurd]   },
-  { path: "**"              , component: LoginComponent             }
+  { path: '', component: HomeComponent },
+  {
+    path: "login", component: LoginComponent
+  },
+  {
+    path: "home", component: HomeComponent
+    , canActivate: [isAuthenticatedGaurd]
+  },
+  {
+    path: "testGuard", component: TestGuardComponent
+    , canActivate: [isAuthenticatedGaurd]
+  },
+  { path: "**", component: HomeComponent }
 ];
 
 @NgModule({

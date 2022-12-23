@@ -1,4 +1,3 @@
-import { Token } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -12,9 +11,9 @@ import { AuthService } from '../_services/auth.service';
 export class LoginComponent implements OnInit {
 
   constructor(
-    private formbuilder:FormBuilder,
-    private auth : AuthService,
-    private router : Router
+    private formbuilder: FormBuilder,
+    private auth: AuthService,
+    private router: Router
   ) { }
 
   loginForm = this.formbuilder.group({
@@ -23,18 +22,18 @@ export class LoginComponent implements OnInit {
   })
 
   //username property
-  get USERNAME(){
+  get USERNAME() {
     return this.loginForm.get('username');
   }
 
   //password property
-  get PASSWORD(){
+  get PASSWORD() {
     return this.loginForm.get('password');
   }
 
-  isLoggedIn    : boolean = false;
-  isLoginFailed : boolean = false;
-  errorMessage : string = "";
+  isLoggedIn: boolean = false;
+  isLoginFailed: boolean = false;
+  errorMessage: string = "";
 
   ngOnInit(): void {
     //check if the user authenticated or not
@@ -42,13 +41,13 @@ export class LoginComponent implements OnInit {
     if (token == null || undefined) {
       this.isLoggedIn = false;
     }
-    else{
+    else {
       this.isLoggedIn = true;
       this.router.navigate(['home']);
     }
   }
 
-  onSubmit(){
+  onSubmit() {
     let userlogin = this.USERNAME?.value;
     let passlogin = this.PASSWORD?.value;
 
@@ -64,9 +63,9 @@ export class LoginComponent implements OnInit {
           this.errorMessage = "username or password is invalid"
         }
       );
-      
+
     }
-    
+
   }
 
 }

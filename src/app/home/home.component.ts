@@ -206,7 +206,6 @@ export class HomeComponent implements OnInit {
         //set data into session storage "json to string"
         //sessionStorage.setItem("CartPtoducts",JSON.stringify(this.cartProducts));
         this.cartLength = this.cartProducts.length;
-        console.log(this.cartLength);
       }
     )
   }
