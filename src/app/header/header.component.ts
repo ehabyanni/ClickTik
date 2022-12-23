@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { HomeComponent } from '../home/home.component';
 import { AuthService } from '../_services/auth.service';
+import { isAuthenticatedGaurd } from '../_gaurds/isAuthenticated.guard';
 
 @Component({
   selector: 'app-header',
@@ -11,8 +10,7 @@ import { AuthService } from '../_services/auth.service';
 export class HeaderComponent implements OnInit {
 
   constructor(
-    private authService:AuthService ,
-    private router : Router
+    private authService: AuthService
   ) { }
 
   @Output() headerSearchToHome = new EventEmitter();
@@ -27,20 +25,20 @@ export class HeaderComponent implements OnInit {
     if (token == null || undefined) {
       this.isLoggedIn = false;
     }
-    else{
+    else {
       this.isLoggedIn = true;
     }
+
   }
 
-
-  signOut(){
+  //logout function
+  signOut() {
     this.authService.logout();
-    this.router.navigate(['login']);
   }
 
 
   //search function
-  search(event:any){
+  search(event: any) {
     var word = event.target.value;
     this.headerSearchToHome.emit(word);
   }

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import { Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,7 +16,7 @@ export class AuthService {
 
   baseURL: string = "";
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.baseURL = environment.apiUrl;
   }
 
@@ -25,7 +26,6 @@ export class AuthService {
       password: password
     }, httpOptions);
   }
-
 
   //check Authentication
   public isLoggedIn(): Observable<any> {
@@ -39,5 +39,6 @@ export class AuthService {
 
   public logout() {
     localStorage.clear();
+    this.router.navigate(['login']);
   }
 }

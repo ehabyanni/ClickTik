@@ -47,12 +47,6 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit(): void {
-    //check if the user authenticated or not
-    var token = localStorage.getItem('authToken');
-    if (token == null || undefined) {
-      this.router.navigate(['login']);
-    }
-
     //get categories
     this.categoryService.getAllCategories().subscribe(
       data => {
@@ -196,10 +190,10 @@ export class HomeComponent implements OnInit {
 
   //cart feature
 
-  cartProducts:IProduct[] = [];
-  cartLength:number = 0;
+  cartProducts: IProduct[] = [];
+  cartLength: number = 0;
 
-  addToCart(id:any){
+  addToCart(id: any) {
     this.productService.getOneProduct(id).subscribe(
       data => {
         this.cartProducts.push(data);
