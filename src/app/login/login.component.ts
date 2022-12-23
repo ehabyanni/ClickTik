@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
           this.isLoginFailed = false;
           this.router.navigate(['home']);
         },
-        err => {
+        error => {
           this.errorMessage = "username or password is invalid"
         }
       );

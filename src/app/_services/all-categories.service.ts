@@ -2,23 +2,23 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ICategory } from '../_interfaces/ICategory';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AllCategoriesService {
 
-  constructor(
-    private http : HttpClient
-  ) { }
+  baseURL: string = "";
 
-  
-  public _url = 'https://dummyjson.com/products/categories';
+  constructor(private http: HttpClient) {
+    this.baseURL = environment.apiUrl
+  }
 
 
   //show all movies
-  getAllCategories():Observable<ICategory>{
-    return this.http.get<ICategory>(this._url);
+  getAllCategories(): Observable<ICategory> {
+    return this.http.get<ICategory>(this.baseURL + 'products/categories');
   }
 }
 

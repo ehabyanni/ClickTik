@@ -1,9 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { bootstrapApplication } from '@angular/platform-browser';
+import { environment } from 'src/environments/environment.prod';
 import { Observable, of } from 'rxjs';
-
-const AUTH_API = 'https://dummyjson.com/auth/login';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,25 +13,29 @@ const httpOptions = {
 
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  baseURL: string = "";
+
+  constructor(private http: HttpClient) {
+    this.baseURL = environment.apiUrl;
+  }
 
   public login(username: string, password: string): Observable<any> {
-    return this.http.post<any>(AUTH_API, {
+    return this.http.post<any>(this.baseURL + `auth/login`, {
       username: username,
       password: password
     }, httpOptions);
   }
 
-  public isLoggedIn():Observable<any>{
-    let isAuth : boolean = false;
+  public isLoggedIn(): Observable<any> {
+    let isAuth: boolean = false;
     const token = localStorage.getItem('authToken');
-    if(token != null || undefined){
+    if (token != null || undefined) {
       isAuth = true;
     }
-    return of (isAuth);
+    return of(isAuth);
   }
 
-  public logout(){
+  public logout() {
     localStorage.clear();
   }
 }
