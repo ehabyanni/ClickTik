@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['home']);
         },
         error => {
-          this.errorMessage = "username or password is invalid"
+          this.errorMessage = error.error.message || "Invalid User";
         }
       );
 

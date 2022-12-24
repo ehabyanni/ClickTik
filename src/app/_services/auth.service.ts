@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
-import { Observable, of } from 'rxjs';
+import { catchError, Observable, of, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 
 const httpOptions = {
@@ -24,7 +24,12 @@ export class AuthService {
     return this.http.post<any>(this.baseURL + `auth/login`, {
       username: username,
       password: password
-    }, httpOptions);
+    }, httpOptions).pipe(catchError(
+      (err) => {
+        return throwError(() => err || "Internal Server Error");
+      }
+    )
+    );
   }
 
   //check Authentication

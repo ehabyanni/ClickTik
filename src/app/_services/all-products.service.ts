@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHandler } from '@angular/common/http';
+import { ErrorHandler, Injectable } from '@angular/core';
+import { catchError, Observable, throwError } from 'rxjs';
 import { IProduct } from '../_interfaces/IProduct';
 import { environment } from 'src/environments/environment.prod';
 
@@ -27,7 +27,13 @@ export class AllProductsService {
   }
 
   getOneProduct(id: number): Observable<IProduct> {
-    return this.http.get<IProduct>(this.baseURL + `${this.productsURL}/${id}`);
+    return this.http.get<IProduct>(this.baseURL + `${this.productsURL}/${id}`).pipe(
+      catchError(
+        (err) => {
+          return throwError(() => err.statusText || "Internal Server Error")
+        }
+      )
+    )
   }
 
   getAllProductslimit(limit: number, skip: number): Observable<any> {
