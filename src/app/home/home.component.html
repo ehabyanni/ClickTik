@@ -1,6 +1,6 @@
 <app-header [cartProductsLength]="cartLength"></app-header>
 
-<div class="container1">
+<div class="container1" *ngIf="!isLoading">
     <div class="container2">
         <div class="categoriesSection">
             <div class="catSection">
@@ -69,9 +69,13 @@
             </ng-template>
             <!--if there're no products to display-->
             <ng-template #nothingBlock>
-                <p style="text-align: center;">there are no products</p>
+                <p class="noProducts">No Products Found ...</p>
             </ng-template>
 
         </div>
     </div>
+</div>
+
+<div class="loading-overlay" *ngIf="isLoading">
+    <span class="loader"></span>
 </div>

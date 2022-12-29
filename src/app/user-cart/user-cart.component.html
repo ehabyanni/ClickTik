@@ -1,0 +1,37 @@
+<app-header></app-header>
+
+
+<div class="container1">
+    <div class="container2">
+        <div class="bill">
+            <div class="billDetails">
+                <h3>Total Discounted: <span>{{cartDeatilsArrayObj.discountedTotal}}</span> LE</h3>
+                <h3>Total : <span>{{cartDeatilsArrayObj.total}}</span> LE</h3>
+                <h3>Number of Products : <span>{{cartDeatilsArrayObj.totalProducts}}</span></h3>
+                <h3>Products Quantity: <span>{{cartDeatilsArrayObj.totalQuantity}}</span></h3>
+            </div>
+        </div>
+        <div class="productsTable">
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>discountPercentage</th>
+                    <th>discountedPrice</th>
+                </tr>
+                <tr *ngFor="let prod of cartDeatilsArrayObj.products">
+                    <td>{{prod.id}}</td>
+                    <td>{{prod.title}}</td>
+                    <td>{{prod.price}}</td>
+                    <td><input type="number" name="quantity" id="quantity" value={{prod.quantity}} min="1" step="1"></td>
+                    <td>{{prod.total}}</td>
+                    <td>{{prod.discountPercentage}}</td>
+                    <td>{{prod.discountedPrice}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { IUser } from '../_interfaces/IUser';
 import { AuthService } from '../_services/auth.service';
 
 @Component({
@@ -47,6 +48,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
+
   onSubmit() {
     let userlogin = this.USERNAME?.value;
     let passlogin = this.PASSWORD?.value;
@@ -54,6 +56,7 @@ export class LoginComponent implements OnInit {
     if ((userlogin != null) && (passlogin != null)) {
       this.auth.login(userlogin, passlogin).subscribe(
         data => {
+          localStorage.setItem('userToken', JSON.stringify(data));
           localStorage.setItem('authToken', data.token);
           this.isLoggedIn = true;
           this.isLoginFailed = false;

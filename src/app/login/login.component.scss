@@ -1,4 +1,4 @@
-*{
+* {
     font-family: sans-serif;
 }
 
@@ -12,72 +12,100 @@ $greys: rgb(75, 75, 75);
     flex-direction: column;
 }
 
-.container1{
+.container1 {
     background-color: rgb(255, 255, 255);
-    .container2{
-        width: 35%; 
-        background-color: rgb(255, 255, 255); 
-        margin: auto; 
-        padding-top: 75px; 
+
+    .container2 {
+        width: 35%;
+        background-color: rgb(255, 255, 255);
+        margin: auto;
+        padding-top: 75px;
         padding-bottom: 150px;
-        .container3{
+
+        .container3 {
             margin: auto;
             background-color: rgb(255, 255, 255);
             width: 62%;
         }
-        img{
+
+        img {
             width: 50px;
-            display:block; 
+            display: block;
             margin: auto;
             margin-bottom: 10px;
         }
-        h5{
+
+        h5 {
             color: $greys;
             font-weight: normal;
             margin-top: 8px;
         }
 
-        .usernameLogin{
+        .usernameLogin {
             @extend %flexbox;
             padding-top: 20px;
         }
-        .passwordLogin{
+
+        .passwordLogin {
             @extend %flexbox;
             padding: 20px 0px;
         }
-        label{
-         text-align: left;
-         font-weight: bold;
-         color: rgb(36, 36, 36);
-         font-size: 14px;
-         margin-bottom: 5px;
+
+        label {
+            text-align: left;
+            font-weight: bold;
+            color: rgb(36, 36, 36);
+            font-size: 14px;
+            margin-bottom: 5px;
         }
-        input{
-            width:100%; 
-            height: 25px; 
-            padding: 15px 5px; 
-            border: 1px solid rgb(161, 161, 161); 
+
+        input {
+            width: 100%;
+            height: 25px;
+            padding: 15px 5px;
+            border: 1px solid rgb(161, 161, 161);
             border-radius: 5px;
-            margin:auto;
-            outline:none;
+            margin: auto;
+            outline: none;
         }
-        button{
-            width:100%; 
+
+        button {
+            width: 100%;
             height: 35px;
+            border: 1.7px solid #56D9D9;
             border-radius: 5px;
             border: none;
-            margin:auto;
+            margin: auto;
             color: rgb(36, 36, 36);
             font-size: 16px;
             background-color: #56D9D9;
             cursor: pointer;
-            &:hover{
-                background-color: #3bb7b7;
-                color: white;
+
+            &:hover {
+                background-color: #ffffff;
+                border: 1.7px solid #56D9D9;
+                // color: white;
             }
+
         }
-        small{
+
+        small {
             color: red;
         }
+    }
+
+    animation: login 2s ease-in-out;
+    position: relative;
+}
+
+@keyframes login {
+    from {
+        transform: scale(0.4);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
     }
 }

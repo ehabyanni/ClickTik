@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { TestGuardComponent } from './test-guard/test-guard.component';
+import { UserCartComponent } from './user-cart/user-cart.component';
 import { isAuthenticatedGaurd } from './_gaurds/isAuthenticated.guard';
 
 const routes: Routes = [
@@ -16,6 +17,10 @@ const routes: Routes = [
   },
   {
     path: "testGuard", component: TestGuardComponent
+    , canActivate: [isAuthenticatedGaurd]
+  },
+  {
+    path: "cart", component: UserCartComponent
     , canActivate: [isAuthenticatedGaurd]
   },
   { path: "**", component: LoginComponent }

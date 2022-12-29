@@ -40,6 +40,8 @@ $primaryColor: #39baba;
                 border: 1px solid rgb(227, 227, 227);
                 border-radius: 7px;
                 background-color: #ffffff;
+                animation: catDispaly 1s ease-in-out;
+                position: relative;
 
                 .title {
                     width: 95%;
@@ -85,6 +87,8 @@ $primaryColor: #39baba;
                         border-radius: 5px;
                         background-color: $primaryColor;
                         color: black;
+                        animation: labelCat 0.5s ease-in-out;
+                        position: relative;
                     }
                 }
             }
@@ -121,6 +125,8 @@ $primaryColor: #39baba;
                     border: 1px solid rgb(227, 227, 227);
                     border-radius: 7px;
                     overflow: hidden;
+                    animation: productCard 1s ease-in-out;
+                    position: relative;
 
                     .percent {
                         position: absolute;
@@ -261,6 +267,153 @@ $primaryColor: #39baba;
                     border: 1px solid #39baba;
                 }
             }
+
+            .noProducts {
+                text-align: center;
+                font-size: medium;
+                animation: failedSearch 1s ease-in-out;
+                position: relative;
+            }
         }
+    }
+}
+
+.loading-overlay {
+    background-color: #1f2733;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999999;
+
+    .loader {
+        animation: rotate 1s infinite;
+        height: 50px;
+        width: 50px;
+    }
+
+    .loader:before,
+    .loader:after {
+        border-radius: 50%;
+        content: "";
+        display: block;
+        height: 20px;
+        width: 20px;
+    }
+
+    .loader:before {
+        animation: ball1 1s infinite;
+        background-color: #fff;
+        box-shadow: 30px 0 0 $primaryColor;
+        margin-bottom: 10px;
+    }
+
+    .loader:after {
+        animation: ball2 1s infinite;
+        background-color: $primaryColor;
+        box-shadow: 30px 0 0 #fff;
+    }
+
+    @keyframes rotate {
+        0% {
+            transform: rotate(0deg) scale(0.8)
+        }
+
+        50% {
+            transform: rotate(360deg) scale(1.2)
+        }
+
+        100% {
+            transform: rotate(720deg) scale(0.8)
+        }
+    }
+
+    @keyframes ball1 {
+        0% {
+            box-shadow: 30px 0 0 $primaryColor;
+        }
+
+        50% {
+            box-shadow: 0 0 0 $primaryColor;
+            margin-bottom: 0;
+            transform: translate(15px, 15px);
+        }
+
+        100% {
+            box-shadow: 30px 0 0 $primaryColor;
+            margin-bottom: 10px;
+        }
+    }
+
+    @keyframes ball2 {
+        0% {
+            box-shadow: 30px 0 0 #fff;
+        }
+
+        50% {
+            box-shadow: 0 0 0 #fff;
+            margin-top: -20px;
+            transform: translate(15px, 15px);
+        }
+
+        100% {
+            box-shadow: 30px 0 0 #fff;
+            margin-top: 0;
+        }
+    }
+}
+
+
+
+@keyframes labelCat {
+    from {
+        top: -5px;
+        opacity: 0;
+    }
+
+    to {
+        top: 0px;
+        opacity: 1;
+    }
+}
+
+
+
+
+@keyframes failedSearch {
+    from {
+        bottom: -25px;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 0px;
+        opacity: 1;
+    }
+}
+@keyframes productCard {
+    from {
+        bottom: -5px;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 0px;
+        opacity: 1;
+    }
+}
+@keyframes catDispaly {
+    from {
+        right: 5px;
+        opacity: 0;
+    }
+
+    to {
+        right: 0px;
+        opacity: 1;
     }
 }

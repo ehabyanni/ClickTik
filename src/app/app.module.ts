@@ -14,6 +14,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './_helpers/auth.interceptor';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { TestGuardComponent } from './test-guard/test-guard.component';
+import { UserCartComponent } from './user-cart/user-cart.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TestGuardComponent } from './test-guard/test-guard.component';
     FooterComponent,
     LoginComponent,
     HomeComponent,
-    TestGuardComponent
+    TestGuardComponent,
+    UserCartComponent
   ],
   imports: [
     BrowserModule,

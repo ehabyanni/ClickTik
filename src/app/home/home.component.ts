@@ -5,6 +5,7 @@ import { IProduct } from '../_interfaces/IProduct';
 import { AllCategoriesService } from '../_services/all-categories.service';
 import { AllProductsService } from '../_services/all-products.service';
 import { SearchServiceService } from '../_services/search-service.service';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-home',
@@ -46,7 +47,14 @@ export class HomeComponent implements OnInit {
   totalPagesArray: any = [];
 
 
+
+  //preLoading
+  isLoading: boolean = true;
+
   ngOnInit(): void {
+
+    this.loadPage();
+
     //get categories
     this.categoryService.getAllCategories().subscribe(
       data => {
@@ -88,6 +96,12 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  //page loading
+  loadPage() {
+    setInterval(() => {
+      this.isLoading = false;
+    }, 4000)
+  }
 
 
   //get all products function
