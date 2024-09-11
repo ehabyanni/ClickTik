@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { isAuthenticatedGaurd } from '../_gaurds/isAuthenticated.guard';
+import { SharedSearchWordService } from '../_services/shared-search-word.service';
 
 @Component({
   selector: 'app-header',
@@ -10,10 +11,11 @@ import { isAuthenticatedGaurd } from '../_gaurds/isAuthenticated.guard';
 export class HeaderComponent implements OnInit {
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private sharedSearchWordService: SharedSearchWordService
   ) { }
 
-  @Output() headerSearchToHome = new EventEmitter();
+  // @Output() headerSearchToHome = new EventEmitter();
 
   @Input() cartProductsLength = 0;
 
@@ -40,8 +42,9 @@ export class HeaderComponent implements OnInit {
   //search function
   search(event: any) {
     var word = event.target.value;
-    this.headerSearchToHome.emit(word);
+    // this.headerSearchToHome.emit(word);
+    ////// using behavior subject to set the data which will be shared among all components 
+    this.sharedSearchWordService.setSearchWord(word);
   }
-
 
 }
