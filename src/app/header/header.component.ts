@@ -43,8 +43,14 @@ export class HeaderComponent implements OnInit {
   search(event: any) {
     var word = event.target.value;
     // this.headerSearchToHome.emit(word);
+
     ////// using behavior subject to set the data which will be shared among all components 
-    this.sharedSearchWordService.setSearchWord(word);
+    // this.sharedSearchWordService.setSearchWord(word);
+
+
+    ///// Using signals to set the data which will be shared among all components.
+    // this.sharedSearchWordService.setSearchWord(word);
+
   }
 
 }

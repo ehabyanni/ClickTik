@@ -18,4 +18,21 @@ export class SharedSearchWordService {
   setSearchWord(word: string) {
     this.searchWord.next(word);
   }
+
+  //if we use signals
+  /*
+
+  let searchWord = signal<string>('');
+
+  //method  to receive the shared data
+  getSearchWord() : any {
+    return this.searchWord;
+  }
+
+  //method  to update the shared data
+  setSearchWord(word: string) {
+    this.searchWord.update(() => word)
+  }
+
+  */
 }

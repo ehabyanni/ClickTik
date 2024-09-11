@@ -71,34 +71,37 @@ export class HomeComponent implements OnInit {
 
   //after header component to be loaded completely
   ngAfterViewInit() {
-    // this.searchFunc.headerSearchToHome.subscribe(
-    //   data => {
-    //     this.searchWord = data;
-    //     if (((this.searchWord != null) || (this.searchWord != undefined)) && (this.searchWord.length >= 1)) {
-    //       this.Searching = true;
-    //       this.searchService.searchProducts(this.searchWord).subscribe(
-    //         dataCollection => {
-    //           this.allProducts = dataCollection.products;
-    //           this.displayProducts = this.allProducts;
-    //         }
-    //       )
-    //     }
-    //     else {
-    //       this.Searching = false;
-    //       //reset the pagination 
-    //       this.currentPage = 1;
-    //       this.total = 1;
-    //       this.skip = 0;
-    //       this.totalPages = 1;
-    //       this.totalPagesArray = [];
-    //       //calling the endPoint
-    //       this.getProducts();
-    //     }
-    //   }
-    // );
+    /*
+    this.searchFunc.headerSearchToHome.subscribe(
+      data => {
+        this.searchWord = data;
+        if (((this.searchWord != null) || (this.searchWord != undefined)) && (this.searchWord.length >= 1)) {
+          this.Searching = true;
+          this.searchService.searchProducts(this.searchWord).subscribe(
+            dataCollection => {
+              this.allProducts = dataCollection.products;
+              this.displayProducts = this.allProducts;
+            }
+          )
+        }
+        else {
+          this.Searching = false;
+          //reset the pagination 
+          this.currentPage = 1;
+          this.total = 1;
+          this.skip = 0;
+          this.totalPages = 1;
+          this.totalPagesArray = [];
+          //calling the endPoint
+          this.getProducts();
+        }
+      }
+    );
+    */
 
 
     ////// using behavior subject to get the data which will be shared among all components 
+    /*
     this.sharedSearchWordService.getSearchWord().subscribe(
       data => {
         this.searchWord = data;
@@ -124,6 +127,41 @@ export class HomeComponent implements OnInit {
         }
       }
     );
+    */
+
+
+     /* 
+      Using signals to set the data which will be shared among all components.
+      An effect is a type of signal that runs whenever one or moew signal values change.
+      You can create an effect with the effect function.
+    */
+    /*
+       effect(()=> {
+          // inside the effect, we assign the value of shared data to the local 'data' variable
+          let data = this.sharedSearchWordService.getSearchWord();
+          if (((this.data != null) || (this.data != undefined) || (this.data != '')) && (this.data.length >= 1)) {
+          this.Searching = true;
+          this.searchService.searchProducts(this.data).subscribe(
+            dataCollection => {
+              this.allProducts = dataCollection.products;
+              this.displayProducts = this.allProducts;
+            }
+          )
+        }
+        else {
+          this.Searching = false;
+          //reset the pagination 
+          this.currentPage = 1;
+          this.total = 1;
+          this.skip = 0;
+          this.totalPages = 1;
+          this.totalPagesArray = [];
+          //calling the endPoint
+          this.getProducts();
+        }
+       })
+    */
+
   }
 
   //page loading
