@@ -6,6 +6,7 @@ import { AllCategoriesService } from '../_services/all-categories.service';
 import { AllProductsService } from '../_services/all-products.service';
 import { SearchServiceService } from '../_services/search-service.service';
 import * as $ from 'jquery';
+import { SharedSearchWordService } from '../_services/shared-search-word.service';
 
 @Component({
   selector: 'app-home',
@@ -18,11 +19,12 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private categoryService: AllCategoriesService,
     private productService: AllProductsService,
-    private searchService: SearchServiceService
+    private searchService: SearchServiceService,
+    private sharedSearchWordService: SharedSearchWordService
   ) { }
 
 
-  @ViewChild(HeaderComponent) searchFunc!: HeaderComponent;
+  // @ViewChild(HeaderComponent) searchFunc!: HeaderComponent;
 
   allCategories: any = [];
   allProducts: IProduct[] = [];
@@ -69,10 +71,38 @@ export class HomeComponent implements OnInit {
 
   //after header component to be loaded completely
   ngAfterViewInit() {
-    this.searchFunc.headerSearchToHome.subscribe(
+    // this.searchFunc.headerSearchToHome.subscribe(
+    //   data => {
+    //     this.searchWord = data;
+    //     if (((this.searchWord != null) || (this.searchWord != undefined)) && (this.searchWord.length >= 1)) {
+    //       this.Searching = true;
+    //       this.searchService.searchProducts(this.searchWord).subscribe(
+    //         dataCollection => {
+    //           this.allProducts = dataCollection.products;
+    //           this.displayProducts = this.allProducts;
+    //         }
+    //       )
+    //     }
+    //     else {
+    //       this.Searching = false;
+    //       //reset the pagination 
+    //       this.currentPage = 1;
+    //       this.total = 1;
+    //       this.skip = 0;
+    //       this.totalPages = 1;
+    //       this.totalPagesArray = [];
+    //       //calling the endPoint
+    //       this.getProducts();
+    //     }
+    //   }
+    // );
+
+
+    ////// using behavior subject to get the data which will be shared among all components 
+    this.sharedSearchWordService.getSearchWord().subscribe(
       data => {
         this.searchWord = data;
-        if (((this.searchWord != null) || (this.searchWord != undefined)) && (this.searchWord.length >= 1)) {
+        if (((this.searchWord != null) || (this.searchWord != undefined) || (this.searchWord != '')) && (this.searchWord.length >= 1)) {
           this.Searching = true;
           this.searchService.searchProducts(this.searchWord).subscribe(
             dataCollection => {
