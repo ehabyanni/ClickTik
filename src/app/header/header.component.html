@@ -1,7 +1,7 @@
 <!--Font Awesome-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-crossorigin="anonymous" referrerpolicy="no-referrer" />
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 
@@ -12,7 +12,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
             <img src="assets/images/logo.png">
             <h4>ClickTik</h4>
         </div>
-        <div *ngIf="isLoggedIn; then accountBlock; else loginBlock"></div>
+        <!-- <div *ngIf="isLoggedIn; then accountBlock; else loginBlock"></div>
         <ng-template #accountBlock>
             <div class="navBar">
                 <div class="navigation">
@@ -39,6 +39,24 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
             <div class="status">
                 <a routerLink="/login">Login</a>
             </div>
-        </ng-template>
+        </ng-template> -->
+        <div>
+            <div class="navBar"></div>
+            <div class="navigation">
+                <a routerLink="/home">Home</a>
+                <a routerLink="/testGuard" style="margin-left: 10px;">test</a>
+            </div>
+            <div class="searchbar">
+                <input type="search" placeholder="Search" (keyup)="search($event)">
+            </div>
+        </div>
+        <div class="status">
+            <a routerLink="/cart">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <small class="cartItemNumber">{{cartProductsLength}}</small>
+            </a>
+            &nbsp;
+            <a (click)="signOut()">Logout</a>
+        </div>
     </div>
 </div>
