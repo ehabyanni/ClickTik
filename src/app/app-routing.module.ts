@@ -13,15 +13,15 @@ const routes: Routes = [
   },
   {
     path: "home", component: HomeComponent
-    , canActivate: [isAuthenticatedGaurd]
+    // , canActivate: [isAuthenticatedGaurd]
   },
   {
     path: "testGuard", component: TestGuardComponent
-    , canActivate: [isAuthenticatedGaurd]
+    // , canActivate: [isAuthenticatedGaurd]
   },
   {
     path: "cart", component: UserCartComponent
-    , canActivate: [isAuthenticatedGaurd]
+    // , canActivate: [isAuthenticatedGaurd]
   },
   { path: "**", component: LoginComponent }
 ];
